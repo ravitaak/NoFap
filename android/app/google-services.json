@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "976980113025",
+    "project_id": "nofap-reboot-24874",
+    "storage_bucket": "nofap-reboot-24874.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976980113025:android:6a567347d6261fa8b8ff80",
+        "android_client_info": {
+          "package_name": "org.codedrink.nofap_reboot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxCEnOc2AYU6-yzPAxOoasF3it6ozPAKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
