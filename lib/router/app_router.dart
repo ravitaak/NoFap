@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nofap_reboot/constants.dart';
 import 'package:nofap_reboot/ui/pages/force_close_screen.dart';
 import 'package:nofap_reboot/ui/pages/home_screen.dart';
+import 'package:nofap_reboot/ui/pages/privacy_policy.dart';
 import 'package:nofap_reboot/ui/pages/splash_screen.dart';
 
 class AppRouter {
@@ -58,6 +59,10 @@ class AppRouter {
     context.go('/donate');
   }
 
+  static void navigateToPrivacyPolicy(BuildContext context) {
+    context.go('/privacy-policy');
+  }
+
   static final GoRouter router = GoRouter(
     initialLocation: '/splash',
     redirect: (BuildContext context, GoRouterState state) {
@@ -80,6 +85,7 @@ class AppRouter {
         },
       ),
       GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
+      GoRoute(path: '/privacy-policy', builder: (context, state) => const PrivacyScreen()),
     ],
   );
 }

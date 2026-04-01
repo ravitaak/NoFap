@@ -1,1 +1,21 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"nofap-reboot-24874","appId":"1:976980113025:android:6a567347d6261fa8b8ff80","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"nofap-reboot-24874","configurations":{"android":"1:976980113025:android:6a567347d6261fa8b8ff80"}}}}}}
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "nofap-reboot-24874",
+                    "appId": "1:976980113025:android:6a567347d6261fa8b8ff80",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "nofap-reboot-24874",
+                    "configurations": {
+                        "android": "1:976980113025:android:6a567347d6261fa8b8ff80"
+                    }
+                }
+            }
+        }
+    }
+}

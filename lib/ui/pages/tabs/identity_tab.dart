@@ -1,12 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nofap_reboot/bloc/Theme/app_theme.dart';
 import 'package:nofap_reboot/bloc/streak_cubit.dart';
-import 'package:nofap_reboot/data/helper/database.dart';
+import 'package:nofap_reboot/router/app_router.dart';
 import 'package:nofap_reboot/ui/widgets/achievement_badge.dart';
 import 'package:nofap_reboot/ui/widgets/gold_glow_container.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,8 +18,6 @@ class IdentityTab extends StatefulWidget {
 }
 
 class _IdentityTabState extends State<IdentityTab> {
-  bool _notificationsEnabled = Pref.notificationsEnabled;
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<StreakCubit, StreakState>(
@@ -223,28 +220,45 @@ class _IdentityTabState extends State<IdentityTab> {
                           padding: EdgeInsets.symmetric(vertical: 4.h),
                           child: Column(
                             children: [
+                              // _SettingsTile(
+                              //   icon: Icons.notifications_outlined,
+                              //   title: 'Daily Reminder',
+                              //   trailing: Switch(
+                              //     value: _notificationsEnabled,
+                              //     activeThumbColor: AppTheme.primary,
+                              //     onChanged: (v) {
+                              //       setState(() => _notificationsEnabled = v);
+                              //       Pref.notificationsEnabled = v;
+                              //       HapticFeedback.lightImpact();
+                              //     },
+                              //   ),
+                              // ),
+                              // Divider(height: 1, color: AppTheme.surfaceBorder),
                               _SettingsTile(
-                                icon: Icons.notifications_outlined,
-                                title: 'Daily Reminder',
-                                trailing: Switch(
-                                  value: _notificationsEnabled,
-                                  activeThumbColor: AppTheme.primary,
-                                  onChanged: (v) {
-                                    setState(() => _notificationsEnabled = v);
-                                    Pref.notificationsEnabled = v;
-                                    HapticFeedback.lightImpact();
-                                  },
-                                ),
+                                icon: Icons.star_outline,
+                                title: 'Rate App',
+                                onTap: () => launchUrl(Uri.parse('https://play.google.com/store/apps/details?id=org.codedrink.nofap_reboot')),
                               ),
                               Divider(height: 1, color: AppTheme.surfaceBorder),
-                              _SettingsTile(icon: Icons.star_outline, title: 'Rate App', onTap: () {}),
-                              Divider(height: 1, color: AppTheme.surfaceBorder),
-                              _SettingsTile(icon: Icons.share_outlined, title: 'Share App', onTap: () {}),
+                              _SettingsTile(
+                                icon: Icons.apps_outlined,
+                                title: 'More Apps',
+                                onTap: () => launchUrl(Uri.parse('https://play.google.com/store/apps/developer?id=CodeDrink')),
+                              ),
                               Divider(height: 1, color: AppTheme.surfaceBorder),
                               _SettingsTile(
                                 icon: Icons.policy_outlined,
                                 title: 'Privacy Policy',
-                                onTap: () => launchUrl(Uri.parse('https://example.com/privacy')),
+                                onTap: () => AppRouter.navigateToPrivacyPolicy(context),
+                              ),
+                              Divider(height: 1, color: AppTheme.surfaceBorder),
+                              Container(
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r)),
+                                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
+                                child: Text(
+                                  'This app is not a medical or therapeutic solution. It is designed for productivity and habit tracking purposes only.',
+                                  style: TextStyle(fontSize: 12.sp, color: AppTheme.textMuted, fontFamily: 'Delius'),
+                                ),
                               ),
                             ],
                           ),
@@ -308,8 +322,6 @@ class _IdentityTabState extends State<IdentityTab> {
     );
   }
 }
-
-// ── Sub-widgets ────────────────────────────────────────────────────────────
 
 class _SectionLabel extends StatelessWidget {
   final String label;
@@ -379,10 +391,9 @@ class _Divider extends StatelessWidget {
 class _SettingsTile extends StatelessWidget {
   final IconData icon;
   final String title;
-  final Widget? trailing;
   final VoidCallback? onTap;
 
-  const _SettingsTile({required this.icon, required this.title, this.trailing, this.onTap});
+  const _SettingsTile({required this.icon, required this.title, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -393,7 +404,7 @@ class _SettingsTile extends StatelessWidget {
         title,
         style: TextStyle(fontSize: 13.sp, color: AppTheme.textPrimary, fontFamily: 'Delius'),
       ),
-      trailing: trailing ?? Icon(Icons.arrow_forward_ios, size: 13.sp, color: AppTheme.textMuted),
+      trailing: Icon(Icons.arrow_forward_ios, size: 13.sp, color: AppTheme.textMuted),
       contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 2.h),
       minLeadingWidth: 24.w,
     );
